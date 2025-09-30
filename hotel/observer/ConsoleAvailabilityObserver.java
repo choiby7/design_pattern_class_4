@@ -5,15 +5,15 @@ public final class ConsoleAvailabilityObserver implements RoomAvailabilityObserv
     public void onEvent(RoomAvailabilityEvent e) {
         switch (e.type()) {
             case BECAME_UNAVAILABLE -> System.out.printf(
-                "[AVAIL][UNAVAILABLE] room=%s, type=%s, left=%d%n",
+                "[잔여 방 없음] 방=%s, 종류=%s, 잔여=%d%n",
                 e.room().id(), e.room().type(), e.availableCountByType()
             );
             case BECAME_AVAILABLE -> System.out.printf(
-                "[AVAIL][AVAILABLE] room=%s, type=%s, left=%d%n",
+                "[예약 가능] 방=%s, 종류=%s, 잔여=%d%n",
                 e.room().id(), e.room().type(), e.availableCountByType()
             );
             case LOW_STOCK -> System.out.printf(
-                "[AVAIL][LOW_STOCK] type=%s, left=%d (triggered by room=%s)%n",
+                "[예약 가능][매진 임박] 종류=%s, 잔여=%d (예약 가능 방=%s)%n",
                 e.room().type(), e.availableCountByType(), e.room().id()
             );
         }
